@@ -1,8 +1,8 @@
 import { app } from './app/app';
 import * as http from 'http';
 import * as dotenv from 'dotenv';
-
-// `db` will be the mongo uri as a string
+import * as mongoose from 'mongoose'; 
+import { currentDb } from '../config/db';
 
 
 // load secret keys from .env
@@ -21,9 +21,16 @@ if (process.env.TESTENV) {
 const port = process.env.PORT || 8080;
 const server = http.createServer(app);
 server.listen(port);
-
+// listen to server
 server.on('listening', async () => {
   console.info(`Listening on port ${ port }`)
+  // connect to database
+  // `currentDb` will be the mongo uri as a string
+  mongoose.connect(currentDb, { useNewUrlParser: true });
+  mongoose.connection.on('open', () => {
+    console.info('Connected to Mongo.')
+
+  })
 
 })
 
