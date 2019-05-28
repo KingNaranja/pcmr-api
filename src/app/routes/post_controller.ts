@@ -28,25 +28,6 @@ export class PostController extends Controller {
     }
   }
 
-  
-
-  // CREATE
-  @Post()
-  public async create(
-    // pull params from request body
-    @BodyProp() title:string, link:string, img: string) : 
-    Promise<void> {
-      // insert new document into db
-      const document = new PostModel({ 
-        title: title,
-        link: link, 
-        img: img
-      });
-      await document.save();
-  }
-
-
-
   // UPDATE
   @Put('/{id}')
   // make sure function args match path parameters
