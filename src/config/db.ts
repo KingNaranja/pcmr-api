@@ -8,8 +8,8 @@ const database = {
 }
 
 // Identify if development environment is test or development
-const localDb:string = process.env.TESTENV ? database.test : database.development
+const localDb:string = process.env.TESTENV ? database.test : database.development;
 
-const currentDb = process.env.MONGODB_URI || localDb
+const currentDb = process.env.MONGODB_URI || localDb;
 
 export { currentDb }

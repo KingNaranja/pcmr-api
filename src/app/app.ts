@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyparser from 'body-parser';
 import * as cors from 'cors';
-import { requestLoggerMiddleware } from '../../middleware/request_logger_middleware';
+import { requestLoggerMiddleware } from '../middleware/request_logger_middleware';
 import './routes/post_controller';
 
 const app = express();

@@ -2,7 +2,7 @@ import { app } from './app/app';
 import * as http from 'http';
 import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose'; 
-import { currentDb } from '../config/db';
+import { currentDb } from './config/db';
 
 
 // load secret keys from .env
