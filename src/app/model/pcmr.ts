@@ -1,13 +1,13 @@
 import * as mongoose from 'mongoose';
 
-interface RedditPost {
+interface PcmrPost {
   _id: string, 
   title: string, 
   link: string, 
   img: string
 }
 
-const PostSchema = new mongoose.Schema({
+const PcmrSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -22,6 +22,6 @@ const PostSchema = new mongoose.Schema({
 
 })
 
-const PostModel = mongoose.model('Post', PostSchema)
+const PcmrModel = mongoose.model('PCMR', PcmrSchema)
 
-export { PostModel, RedditPost }
+export { PcmrModel, PcmrPost }

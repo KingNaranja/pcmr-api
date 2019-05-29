@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as bodyparser from 'body-parser';
 import * as cors from 'cors';
 import { requestLoggerMiddleware } from '../middleware/request_logger_middleware';
-import './routes/post_controller';
+import './routes/pcmr_controller';
 
 import { RegisterRoutes } from './routes/routes';
 import * as swaggerUi from 'swagger-ui-express';

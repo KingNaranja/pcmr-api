@@ -1,6 +1,6 @@
 /* tslint:disable */
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
-import { PostController } from './post_controller';
+import { PostController } from './pcmr_controller';
 import * as express from 'express';
 
 const models: TsoaRoute.Models = {

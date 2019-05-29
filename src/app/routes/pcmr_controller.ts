@@ -1,16 +1,16 @@
 import * as express from 'express';
-import { Controller, Route, Get, Post, BodyProp, Put, Delete } from 'tsoa';
-import { PostModel, RedditPost } from '../model/post';
+import { Controller, Route, Get, BodyProp, Put, Delete } from 'tsoa';
+import { PcmrModel, PcmrPost } from '../model/pcmr';
 
 
 @Route('/pcmr')
-export class PostController extends Controller {
+export class PCMRController extends Controller {
   // GET
   @Get()
-  public async getAll(): Promise<RedditPost[]> {
+  public async getAll(): Promise<PcmrPost[]> {
     // find all documents in the todo collection
     try {
-      let items:any = await PostModel.find({});
+      let items:any = await PcmrModel.find({});
       // mongodb documents have a key of _id instead of id,
       // map the doc items into more friendly objects
       items = items.map( item => {
@@ -35,7 +35,7 @@ export class PostController extends Controller {
     id: string,
      @BodyProp() link: string) : Promise<void> {
     // Find document by id and Update
-    await PostModel.findByIdAndUpdate(id, {link:link},{new: true});
+    await PcmrModel.findByIdAndUpdate(id, {link:link},{new: true});
   }
   
 
@@ -43,7 +43,7 @@ export class PostController extends Controller {
   @Delete('/{id}')
   public async remove(id: string) : Promise<void> {
     // Find document by Id and Delete
-    await PostModel.findByIdAndDelete(id);
+    await PcmrModel.findByIdAndDelete(id);
   }
  
 }
