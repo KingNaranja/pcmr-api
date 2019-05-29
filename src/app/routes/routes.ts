@@ -1,15 +1,39 @@
 /* tslint:disable */
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
-import { PostController } from './pcmr_controller';
+import { PCMRController } from './pcmr_controller';
+import { PcGamingController } from './pc_gaming_controller';
+import { BuildPcController } from './build_pc_controller';
+import { PcSalesController } from './pc_sale_controller';
 import * as express from 'express';
 
 const models: TsoaRoute.Models = {
-    "RedditPost": {
+    "PcmrPost": {
         "properties": {
             "_id": { "dataType": "string", "required": true },
             "title": { "dataType": "string", "required": true },
             "link": { "dataType": "string", "required": true },
-            "img": { "dataType": "string", "required": true },
+            "img": { "dataType": "string" },
+        },
+    },
+    "PcGamingPost": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
+        },
+    },
+    "BuildPcPost": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
+        },
+    },
+    "PcSalePost": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
         },
     },
 };
@@ -28,7 +52,7 @@ export function RegisterRoutes(app: express.Express) {
                 return next(err);
             }
 
-            const controller = new PostController();
+            const controller = new PCMRController();
 
 
             const promise = controller.getAll.apply(controller, validatedArgs as any);
@@ -48,7 +72,7 @@ export function RegisterRoutes(app: express.Express) {
                 return next(err);
             }
 
-            const controller = new PostController();
+            const controller = new PCMRController();
 
 
             const promise = controller.update.apply(controller, validatedArgs as any);
@@ -67,7 +91,178 @@ export function RegisterRoutes(app: express.Express) {
                 return next(err);
             }
 
-            const controller = new PostController();
+            const controller = new PCMRController();
+
+
+            const promise = controller.remove.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.get('/pc-gaming',
+        function(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcGamingController();
+
+
+            const promise = controller.getAll.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.put('/pc-gaming/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+                link: { "in": "body-prop", "name": "link", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcGamingController();
+
+
+            const promise = controller.update.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.delete('/pc-gaming/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcGamingController();
+
+
+            const promise = controller.remove.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.get('/build-pc',
+        function(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new BuildPcController();
+
+
+            const promise = controller.getAll.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.put('/build-pc/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+                link: { "in": "body-prop", "name": "link", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new BuildPcController();
+
+
+            const promise = controller.update.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.delete('/build-pc/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new BuildPcController();
+
+
+            const promise = controller.remove.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.get('/pc-sales',
+        function(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcSalesController();
+
+
+            const promise = controller.getAll.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.put('/pc-sales/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+                link: { "in": "body-prop", "name": "link", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcSalesController();
+
+
+            const promise = controller.update.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.delete('/pc-sales/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcSalesController();
 
 
             const promise = controller.remove.apply(controller, validatedArgs as any);

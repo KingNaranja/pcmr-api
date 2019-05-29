@@ -4,7 +4,7 @@
 		"application/json"
 	],
 	"definitions": {
-		"RedditPost": {
+		"PcmrPost": {
 			"properties": {
 				"_id": {
 					"type": "string"
@@ -16,14 +16,71 @@
 					"type": "string"
 				},
 				"img": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link"
+			],
+			"type": "object"
+		},
+		"PcGamingPost": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
 					"type": "string"
 				}
 			},
 			"required": [
 				"_id",
 				"title",
-				"link",
-				"img"
+				"link"
+			],
+			"type": "object"
+		},
+		"BuildPcPost": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link"
+			],
+			"type": "object"
+		},
+		"PcSalePost": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link"
 			],
 			"type": "object"
 		}
@@ -49,7 +106,7 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/RedditPost"
+								"$ref": "#/definitions/PcmrPost"
 							}
 						}
 					}
@@ -59,6 +116,243 @@
 			}
 		},
 		"/pcmr/{id}": {
+			"put": {
+				"operationId": "Update",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"schema": {
+							"properties": {
+								"link": {
+									"type": "string"
+								}
+							},
+							"title": "UpdateBody",
+							"type": "object",
+							"required": [
+								"link"
+							]
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Remove",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/pc-gaming": {
+			"get": {
+				"operationId": "GetAll",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/PcGamingPost"
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/pc-gaming/{id}": {
+			"put": {
+				"operationId": "Update",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"schema": {
+							"properties": {
+								"link": {
+									"type": "string"
+								}
+							},
+							"title": "UpdateBody",
+							"type": "object",
+							"required": [
+								"link"
+							]
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Remove",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/build-pc": {
+			"get": {
+				"operationId": "GetAll",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/BuildPcPost"
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/build-pc/{id}": {
+			"put": {
+				"operationId": "Update",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"schema": {
+							"properties": {
+								"link": {
+									"type": "string"
+								}
+							},
+							"title": "UpdateBody",
+							"type": "object",
+							"required": [
+								"link"
+							]
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Remove",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/pc-sales": {
+			"get": {
+				"operationId": "GetAll",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/PcSalePost"
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/pc-sales/{id}": {
 			"put": {
 				"operationId": "Update",
 				"produces": [
