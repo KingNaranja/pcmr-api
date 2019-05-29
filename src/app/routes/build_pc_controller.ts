@@ -1,16 +1,18 @@
 import * as express from 'express';
 import { Controller, Route, Get, BodyProp, Put, Delete } from 'tsoa';
-import { PcGamingModel, PcGamingPost } from '../model/pc_gaming';
+import { BuildPcModel, BuildPcPost } from '../model/build_pc';
 
 
-@Route('/pc-gaming')
-export class PcGamingController extends Controller {
+@Route('/build-pc')
+export class BuildPcController extends Controller {
   // GET
   @Get()
-  public async getAll(): Promise<PcGamingPost[]> {
+  public async getAll(): Promise<BuildPcPost[]> {
     // find all documents in the todo collection
     try {
-      let items:any = await PcGamingModel.find({});
+      let items:any = await BuildPcModel.find({});
+      // mongodb documents have a key of _id instead of id,
+      // map the doc items into more friendly objects
       items = items.map( item => {
         return { 
           id: item._id,
@@ -32,7 +34,7 @@ export class PcGamingController extends Controller {
     id: string,
      @BodyProp() link: string) : Promise<void> {
     // Find document by id and Update
-    await PcGamingModel.findByIdAndUpdate(id, {link:link},{new: true});
+    await BuildPcModel.findByIdAndUpdate(id, {link:link},{new: true});
   }
   
 
@@ -40,7 +42,7 @@ export class PcGamingController extends Controller {
   @Delete('/{id}')
   public async remove(id: string) : Promise<void> {
     // Find document by Id and Delete
-    await PcGamingModel.findByIdAndDelete(id);
+    await BuildPcModel.findByIdAndDelete(id);
   }
  
 }

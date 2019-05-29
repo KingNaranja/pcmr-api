@@ -1,16 +1,16 @@
 import * as express from 'express';
 import { Controller, Route, Get, BodyProp, Put, Delete } from 'tsoa';
-import { PcGamingModel, PcGamingPost } from '../model/pc_gaming';
+import { PcSaleModel, PcSalePost } from '../model/pc_sales';
 
 
-@Route('/pc-gaming')
-export class PcGamingController extends Controller {
+@Route('/pc-sales')
+export class PcSalesController extends Controller {
   // GET
   @Get()
-  public async getAll(): Promise<PcGamingPost[]> {
+  public async getAll(): Promise<PcSalePost[]> {
     // find all documents in the todo collection
     try {
-      let items:any = await PcGamingModel.find({});
+      let items:any = await PcSaleModel.find({});
       items = items.map( item => {
         return { 
           id: item._id,
@@ -21,7 +21,7 @@ export class PcGamingController extends Controller {
       return items;
     } catch (err) {
       this.setStatus(500);
-      console.error('Caught Error', err)
+      console.error('Caught Error', err);
     }
   }
 
@@ -32,7 +32,7 @@ export class PcGamingController extends Controller {
     id: string,
      @BodyProp() link: string) : Promise<void> {
     // Find document by id and Update
-    await PcGamingModel.findByIdAndUpdate(id, {link:link},{new: true});
+    await PcSaleModel.findByIdAndUpdate(id, {link:link},{new: true});
   }
   
 
@@ -40,7 +40,7 @@ export class PcGamingController extends Controller {
   @Delete('/{id}')
   public async remove(id: string) : Promise<void> {
     // Find document by Id and Delete
-    await PcGamingModel.findByIdAndDelete(id);
+    await PcSaleModel.findByIdAndDelete(id);
   }
  
 }

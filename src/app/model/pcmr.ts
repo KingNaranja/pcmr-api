@@ -4,7 +4,7 @@ interface PcmrPost {
   _id: string, 
   title: string, 
   link: string, 
-  img: string
+  img?: string
 }
 
 const PcmrSchema = new mongoose.Schema({
@@ -22,6 +22,6 @@ const PcmrSchema = new mongoose.Schema({
 
 })
 
-const PcmrModel = mongoose.model('PCMR', PcmrSchema)
+const PcmrModel = mongoose.model('pcmr', PcmrSchema)
 
 export { PcmrModel, PcmrPost }

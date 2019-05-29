@@ -18,6 +18,6 @@ const PcGamingSchema = new mongoose.Schema({
 
 })
 
-const PcGamingModel = mongoose.model('PcGaming', PcGamingSchema)
+const PcGamingModel = mongoose.model('pc-gaming', PcGamingSchema)
 
 export { PcGamingModel, PcGamingPost }
