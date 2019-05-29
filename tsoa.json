@@ -6,6 +6,6 @@
   "routes": {
     "basePath": "/",
     "entryFile":"./src/app/app.ts",
-    "routesDir": "./src/app/routes"
+    "routesDir": "./src/app/"
   }
 }

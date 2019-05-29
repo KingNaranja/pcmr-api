@@ -4,11 +4,11 @@ import * as cors from 'cors';
 import * as swaggerUi from 'swagger-ui-express';
 import { requestLoggerMiddleware } from '../middleware/request_logger_middleware';
 // import routes for tsoa 
-import './routes/pcmr_controller';
-import './routes/pc_gaming_controller';
-import './routes/build_pc_controller';
-import './routes/pc_sale_controller';
-import { RegisterRoutes } from './routes/routes';
+import './controller/pcmr_controller';
+import './controller/pc_gaming_controller';
+import './controller/build_pc_controller';
+import './controller/pc_sale_controller';
+import { RegisterRoutes } from './routes';
 
 const app = express();
 

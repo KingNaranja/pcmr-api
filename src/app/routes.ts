@@ -1,9 +1,9 @@
 /* tslint:disable */
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
-import { PCMRController } from './pcmr_controller';
-import { PcGamingController } from './pc_gaming_controller';
-import { BuildPcController } from './build_pc_controller';
-import { PcSalesController } from './pc_sale_controller';
+import { PCMRController } from './controller/pcmr_controller';
+import { PcGamingController } from './controller/pc_gaming_controller';
+import { BuildPcController } from './controller/build_pc_controller';
+import { PcSalesController } from './controller/pc_sale_controller';
 import * as express from 'express';
 
 const models: TsoaRoute.Models = {
