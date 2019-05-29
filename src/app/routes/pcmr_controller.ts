@@ -1,9 +1,10 @@
 import * as express from 'express';
-import { Controller, Route, Get, BodyProp, Put, Delete } from 'tsoa';
+import { Controller, Route, Get, BodyProp, Put, Delete, Tags } from 'tsoa';
 import { PcmrModel, PcmrPost } from '../model/pcmr';
 
 
 @Route('/pcmr')
+@Tags('Pc Master Race')
 export class PCMRController extends Controller {
   // GET
   @Get()

@@ -1,9 +1,10 @@
 import * as express from 'express';
-import { Controller, Route, Get, BodyProp, Put, Delete } from 'tsoa';
+import { Controller, Route, Get, BodyProp, Put, Delete, Tags } from 'tsoa';
 import { PcGamingModel, PcGamingPost } from '../model/pc_gaming';
 
 
 @Route('/pc-gaming')
+@Tags('Pc Gaming')
 export class PcGamingController extends Controller {
   // GET
   @Get()
