@@ -1,7 +1,7 @@
 {
   "name": "pcmr-api",
   "version": "1.0.0",
-  "description": "Backend express server for PCMR frontend.",
+  "description": "Backend express server for PCMR web client.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon -x ts-node src/server.ts",
