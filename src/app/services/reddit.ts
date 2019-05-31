@@ -23,7 +23,7 @@ export class Subreddit {
   fetchPosts = async ():Promise<void> => {
     try {
       // grab submissions using `name` param
-      const posts:any[] = await r.getHot(this.name, {limit: 25});
+      const posts:any[] = await r.getHot(this.name, {limit: 30}).slice(2);
       
       const subredditData:any[] = await posts.map( post => {
         return {
