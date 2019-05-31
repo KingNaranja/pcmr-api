@@ -1,10 +1,10 @@
-# PCMR API
+# PCMR API - [Demo](https://pcmr-api.herokuapp.com/docs/)
 
 [PCMR Client](https://modest-cray-5c4ae9.netlify.com/) + [Source](https://github.com/kingnaranja/pc-master-race)
 
 The PCMR API is an express server that handles requests from the PCMR client and repopulates the server database with recent submissions from Reddit.com.
 
-Users can request trending posts from the /r/pcmasterrace and a few related subreddits.
+Users can request the `hot` posts from the /r/pcmasterrace and a few related subreddits.
 
 ## Development 
 
@@ -16,7 +16,8 @@ As a baseline Reddit limits the amount of requests developers can submit to the 
 
 * Typescript 
 * Express 
-* MongoDb / Mongoose 
+* MongoDB
+* Mongoose 
 * Snoowrap
 * Node-Cron
 * Tsoa / Swagger UI ( API Documentation )
