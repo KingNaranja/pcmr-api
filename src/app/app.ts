@@ -28,7 +28,7 @@ try {
   const swaggerDocument = require('./../../swagger.json');
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 } catch (err) {
-  console.error('Unable to read swagger.json', err)
+  console.error('Unable to read swagger.json', err);
 }
 
 

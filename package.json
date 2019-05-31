@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.2.6",
     "mongoose": "^5.5.11",
+    "node-cron": "^2.0.3",
     "snoowrap": "^1.15.2",
     "swagger-ui-express": "^4.0.5",
     "ts-node": "^8.2.0",

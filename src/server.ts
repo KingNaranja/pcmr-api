@@ -2,8 +2,9 @@ import { app } from './app/app';
 import * as http from 'http';
 import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose'; 
+import * as cron from 'node-cron';
 import { currentDb } from './config/db';
-
+import { populateDb } from './app/services/populate';
 
 // load secret keys from .env
 dotenv.config();
@@ -21,16 +22,16 @@ if (process.env.TESTENV) {
 const port = process.env.PORT || 8080;
 const server = http.createServer(app);
 server.listen(port);
-// listen to server
 server.on('listening', async () => {
   console.info(`Listening on port ${ port }`)
   // connect to database
   // `currentDb` will be the mongo uri as a string
   mongoose.connect(currentDb, { useNewUrlParser: true });
+
   mongoose.connection.on('open', () => {
-    console.info('Connected to Mongo.')
-
+    console.info('Connected to Mongo.');
+    // schedule a cron task every 15 minutes 
+    cron.schedule("*/15 * * * *", populateDb);
   })
-
 })
 

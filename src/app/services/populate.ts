@@ -10,8 +10,10 @@ const fetchSubredditData = async (): Promise<void> => {
   const BuildPc = new Subreddit('buildapc');
   const PcGaming = new Subreddit('pcgaming');
   const PcSales = new Subreddit('buildapcsales');
+  
 
   try {
+    await Pcmr.fetchPosts();
     // loop through fetched data 
     await Pcmr.posts.forEach( post => {
       // add new reddit posts to db 
@@ -22,7 +24,7 @@ const fetchSubredditData = async (): Promise<void> => {
       });
       pcmrPost.save();
     })
-
+    await BuildPc.fetchPosts()
     await BuildPc.posts.forEach( post => {
       const pcBuildPost = new BuildPcModel({
           title: post.title,
@@ -31,6 +33,7 @@ const fetchSubredditData = async (): Promise<void> => {
       pcBuildPost.save();
     })
 
+    await PcGaming.fetchPosts();
     await PcGaming.posts.forEach( post => { 
       const pcGamingPost = new PcGamingModel({
           title: post.title,
@@ -39,6 +42,7 @@ const fetchSubredditData = async (): Promise<void> => {
       pcGamingPost.save();
     })
 
+    await PcSales.fetchPosts()
     await PcSales.posts.forEach( post => {
       // POST new reddit posts to db 
       const pcSalePost = new PcSaleModel({
@@ -48,7 +52,7 @@ const fetchSubredditData = async (): Promise<void> => {
       pcSalePost.save();
     })
   } catch(err) {
-    console.error('Error creating new subreddit documents ', err)
+    console.error('Error creating new subreddit documents ', err);
   }
 
 }
@@ -60,16 +64,17 @@ const wipeDatabase = async (): Promise<void> => {
     await BuildPcModel.deleteMany({});
     await PcSaleModel.deleteMany({});
   } catch(err) {
-    console.error('Error cleaning database', err)
+    console.error('Error cleaning database', err);
   }
 }
 
 // scheduled task 
 export const populateDb = async () => {
   console.info('Fetching new subreddit data...');
+  
   await Promise.all([
     wipeDatabase(),
     fetchSubredditData(),
-  ])
+  ]);
 };
 

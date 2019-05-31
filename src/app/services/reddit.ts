@@ -4,25 +4,23 @@ dotenv.config();
 
 const r = new snoowrap({
   userAgent: 'Node.js api client by /u/kledaa',
-  clientId: process.env.CLIENT_ID, // ENV
-  clientSecret: process.env.CLIENT_SECRET, // ENV
-  refreshToken: process.env.REFRESH_TOKEN // ENV
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET, 
+  refreshToken: process.env.REFRESH_TOKEN 
 });
 
 
 export class Subreddit {
-  name: string;
+  private name: string;
   posts: any[];
 
   constructor(subName:string) {
     this.name = subName;
-    this.posts = [];
-    this.fetchPosts();
-    
+    this.posts = [];    
   }
 
   // Fetch subreddit submissions from Reddit 
-  private fetchPosts = async ():Promise<void> => {
+  fetchPosts = async ():Promise<void> => {
     try {
       // grab submissions using `name` param
       const posts:any[] = await r.getHot(this.name, {limit: 25});
@@ -34,11 +32,10 @@ export class Subreddit {
           img: post.url
         };
       })
-      // store fetched data 
       this.posts = subredditData;
     
     } catch(err) {
-      console.error('Error fetching submissions from Reddit', err)
+      console.error('Error fetching submissions from Reddit', err);
     }
 
   }
