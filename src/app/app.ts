@@ -13,7 +13,7 @@ import { RegisterRoutes } from './routes';
 const app = express();
 
 // set CORS headers on response from this api
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:8080' }));
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:3000' }));
 app.use(bodyparser.json());
 
 // add middleware
