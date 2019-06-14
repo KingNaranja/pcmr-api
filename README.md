@@ -1,4 +1,4 @@
-# PCMR API - [Demo](https://pcmr-api.herokuapp.com/docs/)
+# PCMR API - [Try it out](https://pcmr-api.herokuapp.com/docs/)
 
 [PCMR Client](https://modest-cray-5c4ae9.netlify.com/) + [Source](https://github.com/kingnaranja/pc-master-race)
 

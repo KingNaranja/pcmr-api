@@ -9,11 +9,9 @@ export class BuildPcController extends Controller {
   // GET
   @Get()
   public async getAll(): Promise<BuildPcPost[]> {
-    // find all documents in the todo collection
     try {
       let items:any = await BuildPcModel.find({});
-      // mongodb documents have a key of _id instead of id,
-      // map the doc items into more friendly objects
+      // docs must have key of id instead of _id
       items = items.map( item => {
         return { 
           id: item._id,

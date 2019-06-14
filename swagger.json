@@ -88,7 +88,7 @@
 	"info": {
 		"title": "pcmr-api",
 		"version": "1.0.0",
-		"description": "Backend express server for PCMR frontend.",
+		"description": "Backend express server for PCMR web client.",
 		"license": {
 			"name": "ISC"
 		}
@@ -138,7 +138,8 @@
 						"in": "path",
 						"name": "id",
 						"required": true,
-						"type": "string"
+						"format": "double",
+						"type": "number"
 					},
 					{
 						"in": "body",
@@ -177,7 +178,8 @@
 						"in": "path",
 						"name": "id",
 						"required": true,
-						"type": "string"
+						"format": "double",
+						"type": "number"
 					}
 				]
 			}

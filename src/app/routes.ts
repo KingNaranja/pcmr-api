@@ -61,7 +61,7 @@ export function RegisterRoutes(app: express.Express) {
     app.put('/pcmr/:id',
         function(request: any, response: any, next: any) {
             const args = {
-                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+                id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
                 link: { "in": "body-prop", "name": "link", "required": true, "dataType": "string" },
             };
 
@@ -81,7 +81,7 @@ export function RegisterRoutes(app: express.Express) {
     app.delete('/pcmr/:id',
         function(request: any, response: any, next: any) {
             const args = {
-                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+                id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
             };
 
             let validatedArgs: any[] = [];

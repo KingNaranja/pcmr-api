@@ -9,7 +9,6 @@ export class PCMRController extends Controller {
   // GET
   @Get()
   public async getAll(): Promise<PcmrPost[]> {
-    // find all documents in the todo collection
     try {
       let items:any = await PcmrModel.find({});
       // mongodb documents have a key of _id instead of id,
@@ -31,18 +30,16 @@ export class PCMRController extends Controller {
 
   // UPDATE
   @Put('/{id}')
-  // make sure function args match path parameters
   public async update(
-    id: string,
+    id: number,
      @BodyProp() link: string) : Promise<void> {
     // Find document by id and Update
     await PcmrModel.findByIdAndUpdate(id, {link:link},{new: true});
   }
   
-
   // DELETE
   @Delete('/{id}')
-  public async remove(id: string) : Promise<void> {
+  public async remove(id: number) : Promise<void> {
     // Find document by Id and Delete
     await PcmrModel.findByIdAndDelete(id);
   }
