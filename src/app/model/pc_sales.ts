@@ -1,9 +1,14 @@
 import * as mongoose from 'mongoose';
 
-interface PcSalePost {
+interface PcSaleIndex {
   _id: string, 
   title: string, 
-  link: string
+  link: string,
+  submissionId: string
+}
+
+interface PcSalePost extends PcSaleIndex {
+  comments? : Comment
 }
 
 const PcSaleSchema = new mongoose.Schema({
@@ -14,9 +19,13 @@ const PcSaleSchema = new mongoose.Schema({
   link: {
     type: String ,
     required: true
+  },
+  submissionId: {
+    type: String,
+    required: true
   }
 })
 
 const PcSaleModel = mongoose.model('pc-sales', PcSaleSchema)
 
-export { PcSaleModel, PcSalePost }
+export { PcSaleModel, PcSaleIndex, PcSalePost }

@@ -4,6 +4,52 @@
 		"application/json"
 	],
 	"definitions": {
+		"PcmrIndex": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				},
+				"img": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"submissionId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link",
+				"submissionId"
+			],
+			"type": "object"
+		},
+		"Comment": {
+			"properties": {
+				"body": {
+					"type": "string"
+				},
+				"author": {
+					"type": "string"
+				},
+				"created_at": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"body",
+				"author",
+				"created_at"
+			],
+			"type": "object"
+		},
 		"PcmrPost": {
 			"properties": {
 				"_id": {
@@ -18,12 +64,43 @@
 				"img": {
 					"type": "string",
 					"x-nullable": true
+				},
+				"submissionId": {
+					"type": "string"
+				},
+				"comments": {
+					"$ref": "#/definitions/Comment",
+					"x-nullable": true
 				}
 			},
 			"required": [
 				"_id",
 				"title",
-				"link"
+				"link",
+				"submissionId"
+			],
+			"type": "object"
+		},
+		"PcGamingIndex": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link",
+				"submissionId"
 			],
 			"type": "object"
 		},
@@ -37,12 +114,43 @@
 				},
 				"link": {
 					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				},
+				"comments": {
+					"$ref": "#/definitions/Comment",
+					"x-nullable": true
 				}
 			},
 			"required": [
 				"_id",
 				"title",
-				"link"
+				"link",
+				"submissionId"
+			],
+			"type": "object"
+		},
+		"BuildPcIndex": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link",
+				"submissionId"
 			],
 			"type": "object"
 		},
@@ -56,12 +164,43 @@
 				},
 				"link": {
 					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				},
+				"comments": {
+					"$ref": "#/definitions/Comment",
+					"x-nullable": true
 				}
 			},
 			"required": [
 				"_id",
 				"title",
-				"link"
+				"link",
+				"submissionId"
+			],
+			"type": "object"
+		},
+		"PcSaleIndex": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"_id",
+				"title",
+				"link",
+				"submissionId"
 			],
 			"type": "object"
 		},
@@ -75,12 +214,20 @@
 				},
 				"link": {
 					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				},
+				"comments": {
+					"$ref": "#/definitions/Comment",
+					"x-nullable": true
 				}
 			},
 			"required": [
 				"_id",
 				"title",
-				"link"
+				"link",
+				"submissionId"
 			],
 			"type": "object"
 		}
@@ -106,7 +253,7 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/PcmrPost"
+								"$ref": "#/definitions/PcmrIndex"
 							}
 						}
 					}
@@ -119,6 +266,32 @@
 			}
 		},
 		"/pcmr/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/PcmrPost"
+						}
+					}
+				},
+				"tags": [
+					"Pc Master Race"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
 			"put": {
 				"operationId": "Update",
 				"produces": [
@@ -196,7 +369,7 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/PcGamingPost"
+								"$ref": "#/definitions/PcGamingIndex"
 							}
 						}
 					}
@@ -209,6 +382,32 @@
 			}
 		},
 		"/pc-gaming/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/PcGamingPost"
+						}
+					}
+				},
+				"tags": [
+					"Pc Gaming"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
 			"put": {
 				"operationId": "Update",
 				"produces": [
@@ -284,7 +483,7 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/BuildPcPost"
+								"$ref": "#/definitions/BuildPcIndex"
 							}
 						}
 					}
@@ -297,6 +496,32 @@
 			}
 		},
 		"/build-pc/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/BuildPcPost"
+						}
+					}
+				},
+				"tags": [
+					"Build a Pc"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
 			"put": {
 				"operationId": "Update",
 				"produces": [
@@ -372,7 +597,7 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/PcSalePost"
+								"$ref": "#/definitions/PcSaleIndex"
 							}
 						}
 					}
@@ -385,6 +610,32 @@
 			}
 		},
 		"/pc-sales/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/PcSalePost"
+						}
+					}
+				},
+				"tags": [
+					"Pc Sales"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
 			"put": {
 				"operationId": "Update",
 				"produces": [

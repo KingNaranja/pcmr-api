@@ -28,9 +28,9 @@ server.on('listening', async () => {
   // `currentDb` will be the mongo uri as a string
   mongoose.connect(currentDb, { useNewUrlParser: true });
 
-  mongoose.connection.on('open', () => {
+  mongoose.connection.on('open', async () => {
     console.info('Connected to Mongo.');
-    // schedule a cron task every 15 minutes 
+    // schedule cron task every 15 minutes 
     cron.schedule("*/15 * * * *", populateDb);
   })
 })

@@ -1,9 +1,14 @@
 import * as mongoose from 'mongoose';
 
-interface BuildPcPost {
+interface BuildPcIndex {
   _id: string, 
   title: string, 
-  link: string
+  link: string,
+  submissionId: string
+}
+
+interface BuildPcPost extends BuildPcIndex {
+  comments?: Comment
 }
 
 const BuildPcSchema = new mongoose.Schema({
@@ -14,9 +19,13 @@ const BuildPcSchema = new mongoose.Schema({
   link: {
     type: String ,
     required: true
+  },
+  submissionId: {
+    type: String,
+    required: true
   }
 })
 
 const BuildPcModel = mongoose.model('build-a-pc', BuildPcSchema)
 
-export { BuildPcModel, BuildPcPost }
+export { BuildPcModel, BuildPcIndex, BuildPcPost }

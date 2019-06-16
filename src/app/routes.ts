@@ -7,12 +7,38 @@ import { PcSalesController } from './controller/pc_sale_controller';
 import * as express from 'express';
 
 const models: TsoaRoute.Models = {
+    "PcmrIndex": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
+            "img": { "dataType": "string" },
+            "submissionId": { "dataType": "string", "required": true },
+        },
+    },
+    "Comment": {
+        "properties": {
+            "body": { "dataType": "string", "required": true },
+            "author": { "dataType": "string", "required": true },
+            "created_at": { "dataType": "string", "required": true },
+        },
+    },
     "PcmrPost": {
         "properties": {
             "_id": { "dataType": "string", "required": true },
             "title": { "dataType": "string", "required": true },
             "link": { "dataType": "string", "required": true },
             "img": { "dataType": "string" },
+            "submissionId": { "dataType": "string", "required": true },
+            "comments": { "ref": "Comment" },
+        },
+    },
+    "PcGamingIndex": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
+            "submissionId": { "dataType": "string", "required": true },
         },
     },
     "PcGamingPost": {
@@ -20,6 +46,16 @@ const models: TsoaRoute.Models = {
             "_id": { "dataType": "string", "required": true },
             "title": { "dataType": "string", "required": true },
             "link": { "dataType": "string", "required": true },
+            "submissionId": { "dataType": "string", "required": true },
+            "comments": { "ref": "Comment" },
+        },
+    },
+    "BuildPcIndex": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
+            "submissionId": { "dataType": "string", "required": true },
         },
     },
     "BuildPcPost": {
@@ -27,6 +63,16 @@ const models: TsoaRoute.Models = {
             "_id": { "dataType": "string", "required": true },
             "title": { "dataType": "string", "required": true },
             "link": { "dataType": "string", "required": true },
+            "submissionId": { "dataType": "string", "required": true },
+            "comments": { "ref": "Comment" },
+        },
+    },
+    "PcSaleIndex": {
+        "properties": {
+            "_id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "link": { "dataType": "string", "required": true },
+            "submissionId": { "dataType": "string", "required": true },
         },
     },
     "PcSalePost": {
@@ -34,6 +80,8 @@ const models: TsoaRoute.Models = {
             "_id": { "dataType": "string", "required": true },
             "title": { "dataType": "string", "required": true },
             "link": { "dataType": "string", "required": true },
+            "submissionId": { "dataType": "string", "required": true },
+            "comments": { "ref": "Comment" },
         },
     },
 };
@@ -56,6 +104,25 @@ export function RegisterRoutes(app: express.Express) {
 
 
             const promise = controller.getAll.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.get('/pcmr/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PCMRController();
+
+
+            const promise = controller.getOne.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
     app.put('/pcmr/:id',
@@ -115,6 +182,25 @@ export function RegisterRoutes(app: express.Express) {
             const promise = controller.getAll.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
+    app.get('/pc-gaming/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcGamingController();
+
+
+            const promise = controller.getOne.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
     app.put('/pc-gaming/:id',
         function(request: any, response: any, next: any) {
             const args = {
@@ -172,6 +258,25 @@ export function RegisterRoutes(app: express.Express) {
             const promise = controller.getAll.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
+    app.get('/build-pc/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new BuildPcController();
+
+
+            const promise = controller.getOne.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
     app.put('/build-pc/:id',
         function(request: any, response: any, next: any) {
             const args = {
@@ -227,6 +332,25 @@ export function RegisterRoutes(app: express.Express) {
 
 
             const promise = controller.getAll.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.get('/pc-sales/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PcSalesController();
+
+
+            const promise = controller.getOne.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
     app.put('/pc-sales/:id',

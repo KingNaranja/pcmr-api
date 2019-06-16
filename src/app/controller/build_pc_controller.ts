@@ -1,14 +1,15 @@
 import * as express from 'express';
 import { Controller, Route, Get, BodyProp, Put, Delete, Tags } from 'tsoa';
-import { BuildPcModel, BuildPcPost } from '../model/build_pc';
+import { BuildPcModel, BuildPcPost, BuildPcIndex } from '../model/build_pc';
+import { Subreddit } from '../services/reddit';
 
 
 @Route('/build-pc')
 @Tags('Build a Pc')
 export class BuildPcController extends Controller {
-  // GET
+  // Index
   @Get()
-  public async getAll(): Promise<BuildPcPost[]> {
+  public async getAll(): Promise<BuildPcIndex[]> {
     try {
       let items:any = await BuildPcModel.find({});
       // docs must have key of id instead of _id
@@ -16,12 +17,35 @@ export class BuildPcController extends Controller {
         return { 
           id: item._id,
           title: item.title,
-          link: item.link
-        }
-      })
+          link: item.link,
+          submissionId: item.submissionId
+        };
+      });
       return items;
     } catch (err) {
       this.setStatus(500);
+      console.error('Caught Error', err);
+    }
+  }
+
+  // Get One
+  @Get('/{id}')
+  public async getOne(id:string):Promise<BuildPcPost>{
+    try {
+      const item:any = await BuildPcModel.findById(id);
+
+      const post:any = {
+        id: item._id,
+        title: item.title,
+        link: item.link, 
+        submissionId: item.submissionId
+      }
+      const comments = await Subreddit.fetchComments(post.submissionId);
+      post.comments = comments 
+
+      return post 
+    }
+    catch(err){
       console.error('Caught Error', err)
     }
   }
