@@ -11,6 +11,7 @@ interface PcmrIndex {
   title: string, 
   link: string, 
   img?: string,
+  created_at: string,
   submissionId: string
 }
 
@@ -30,6 +31,10 @@ const PcmrSchema = new mongoose.Schema({
   },
   img: {
     type: String
+  },
+  created_at: {
+    type: Date,
+    required: true
   },
   submissionId: {
     type: String,

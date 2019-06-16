@@ -4,6 +4,7 @@ interface PcSaleIndex {
   _id: string, 
   title: string, 
   link: string,
+  created_at: string,
   submissionId: string
 }
 
@@ -18,6 +19,10 @@ const PcSaleSchema = new mongoose.Schema({
   } ,
   link: {
     type: String ,
+    required: true
+  },
+  created_at: {
+    type: Date,
     required: true
   },
   submissionId: {

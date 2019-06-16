@@ -4,6 +4,7 @@ interface BuildPcIndex {
   _id: string, 
   title: string, 
   link: string,
+  created_at: string,
   submissionId: string
 }
 
@@ -18,6 +19,10 @@ const BuildPcSchema = new mongoose.Schema({
   } ,
   link: {
     type: String ,
+    required: true
+  },
+  created_at: {
+    type: Date,
     required: true
   },
   submissionId: {

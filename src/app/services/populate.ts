@@ -11,7 +11,6 @@ const fetchSubredditData = async (): Promise<void> => {
   const PcGaming = new Subreddit('pcgaming');
   const PcSales = new Subreddit('buildapcsales');
   
-
   try {
     await Pcmr.fetchPosts();
     await Pcmr.posts.forEach( post => {
@@ -19,6 +18,7 @@ const fetchSubredditData = async (): Promise<void> => {
           title: post.title,
           link: post.link,
           img: post.img,
+          created_at: post.created_at,
           submissionId: post.submissionId
       });
       pcmrPost.save();
@@ -28,6 +28,7 @@ const fetchSubredditData = async (): Promise<void> => {
       const pcBuildPost = new BuildPcModel({
           title: post.title,
           link: post.link,
+          created_at: post.created_at,
           submissionId: post.submissionId
         });
       pcBuildPost.save();
@@ -38,6 +39,7 @@ const fetchSubredditData = async (): Promise<void> => {
       const pcGamingPost = new PcGamingModel({
           title: post.title,
           link: post.link,
+          created_at: post.created_at,
           submissionId: post.submissionId
         });
       pcGamingPost.save();
@@ -49,6 +51,7 @@ const fetchSubredditData = async (): Promise<void> => {
       const pcSalePost = new PcSaleModel({
           title: post.title,
           link: post.link,
+          created_at: post.created_at,
           submissionId: post.submissionId
         });
       pcSalePost.save();

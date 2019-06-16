@@ -18,6 +18,7 @@ export class BuildPcController extends Controller {
           id: item._id,
           title: item.title,
           link: item.link,
+          created_at: item.created_at,
           submissionId: item.submissionId
         };
       });
@@ -37,7 +38,8 @@ export class BuildPcController extends Controller {
       const post:any = {
         id: item._id,
         title: item.title,
-        link: item.link, 
+        link: item.link,
+        created_at: item.created_at, 
         submissionId: item.submissionId
       }
       const comments = await Subreddit.fetchComments(post.submissionId);

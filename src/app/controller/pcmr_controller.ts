@@ -20,6 +20,7 @@ export class PCMRController extends Controller {
           title: item.title,
           link: item.link, 
           img: item.img,
+          created_at: item.created_at,
           submissionId: item.submissionId
         }
       })
@@ -41,6 +42,7 @@ export class PCMRController extends Controller {
         title: item.title,
         link: item.link, 
         img: item.img,
+        created_at: item.created_at,
         submissionId: item.submissionId
       }
       const comments = await Subreddit.fetchComments(post.submissionId);

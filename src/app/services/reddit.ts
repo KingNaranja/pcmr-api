@@ -30,6 +30,7 @@ export class Subreddit {
           title: post.title,
           link: post.permalink,
           img: post.url,
+          created_at: moment.unix(post.created_utc),
           submissionId: post.id
         };
       })
